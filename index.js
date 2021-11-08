@@ -29,7 +29,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   1. What is the difference between counter1 and counter2?
 
-  counter1 has a closure. there is another function inside the main function that looks to the main function.
+  counter1 is function scoped but counter2 is globally scoped.
   
   2. Which of the two uses a closure? How can you tell?
 
@@ -38,7 +38,7 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
 
-  counter 1 is preferable 
+  counter1 is preferable when you are wanting to use a function to do the same thing in a slightly different way. counter2 is preferable if you are wanting to 
 
 */
 
@@ -74,11 +74,11 @@ function inning(){
 }
 
 console.log('task 2',inning());
-console.log('task 2',inning());
-console.log('task 2',inning());
-console.log('task 2',inning());
-console.log('task 2',inning());
-console.log('task 2',inning());
+// console.log('task 2',inning());
+// console.log('task 2',inning());
+// console.log('task 2',inning());
+// console.log('task 2',inning());
+// console.log('task 2',inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -94,9 +94,20 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningcb, numOfInnings){
+  let homeScore = 0;
+  let awayScore = 0;
+ for(let i = 0; i < numOfInnings; i++){
+  homeScore = homeScore + inningcb();
+  awayScore = awayScore + inningcb();
+ }
+  return {
+    Home: homeScore,
+    Away: awayScore,
+  }
 }
+
+console.log('task 3',finalScore(inning, 9));
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
